@@ -13,9 +13,9 @@ execute pathogen#infect()
 call pathogen#helptags()
 
 " basic shit
+filetype plugin indent on
 syntax on
 syntax enable 
-filetype plugin indent on
 
 " get semicolon to behave like colon
 nnoremap ; :
@@ -47,8 +47,12 @@ set ruler
 set backspace=indent,eol,start
 set laststatus=2
 
+" folding stuff
+set foldmethod=indent
+set foldnestmax=2
+
 " set leader
-let mapleader = ","
+let mapleader = "\<Space>"
 
 " tame searching
 nnoremap / /\v
@@ -62,6 +66,8 @@ set hlsearch
 nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
+" open ag.vim
+nnoremap <leader>a :Ag
 
 " long lines
 set wrap
@@ -85,6 +91,9 @@ nnoremap k gk
 
 " load vimrc by running ",ev"
 nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<cr>
+
+" open files with leader-o
+nnoremap <Leader>o :CtrlP<CR>
 
 " gui how i like it
 set guifont=Monaco:h14
@@ -118,7 +127,8 @@ let NERDTreeIgnore = ['\.pyc$']
 
 " TAG STUFF
 " look in current directory tree for tags file
-set tags=./tags;/
+set tags=./.tags;,~/.vimtags;$HOME
+let g:easytags_file = '~/.vimtags'
 
 """"" Settings for taglist.vim
 let Tlist_Use_Right_Window=1
@@ -144,20 +154,24 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-let g:syntastic_python_flake8_args="--ignore=E501,E128,E225 --max-line-length=110"
-"let g:syntastic_python_flake8_post_args="--ignore=E501,E128,E225 --max-line-length=110"
+"let g:syntastic_python_flake8_args="--ignore=E501,E128,E225 --max-line-length=110"
+let g:syntastic_python_flake8_post_args="--ignore=E501,E128,E225 --max-line-length=110"
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
 
 " python specific mappings
 "" insert breakpoints using leader b/B
 "au FileType python map <silent> <leader>b oimport pdb; pdb.set_trace()<esc>
-au FileType python map <silent> <leader>B Oimport pdb; pdb.set_trace()<esc>
 au FileType python map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
+
+" Override go-to.definition key shortcut to Ctrl-]
+let g:pymode_rope_goto_definition_bind = "<C-]>"
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope = 0
 
 "http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
 "hacks from above (the url, not jesus) to delete fugitive buffers when we
@@ -169,4 +183,3 @@ autocmd BufReadPost fugitive://*
   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
   \   nnoremap <buffer> .. :edit %:h<CR> |
   \ endif
-
