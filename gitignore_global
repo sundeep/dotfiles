@@ -1,0 +1,35 @@
+*.pyc
+.idea
+venv
+.DS_Store
+.vagrant/
+Vagrantfile
+tags
+.python-version
+
+# coverage stuff
+.coverage
+cover
+
+# directory that will be used for local config stuff
+.sunexclude
+.staging_setup/
+
+# python file i use for testing stuff out
+sunscrap.py
+configci.py
+
+# utilities to ignore
+sunutils
+
+# django stuff
+migrations
+
+# vim stuff
+.rope*
+
+
+# sr specific stuff
+shoprunner_resources.py
+sr_vm_resources.py
+srservices_member_config.py
