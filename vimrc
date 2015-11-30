@@ -127,8 +127,8 @@ let NERDTreeIgnore = ['\.pyc$']
 
 " TAG STUFF
 " look in current directory tree for tags file
-set tags=./.tags;,~/.vimtags;$HOME
-let g:easytags_file = '~/.vimtags'
+set tags=./tags,tags;
+"set tags=./.tags;,~/.vimtags;$HOME
 
 """"" Settings for taglist.vim
 let Tlist_Use_Right_Window=1
@@ -165,9 +165,8 @@ let g:syntastic_warning_symbol = "⚠"
 
 " python specific mappings
 "" insert breakpoints using leader b/B
-"au FileType python map <silent> <leader>b oimport pdb; pdb.set_trace()<esc>
-au FileType python map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
-
+map <silent> <leader>b oimport pdb; pdb.set_trace()<esc>
+map <silent> <leader>B Oimport pdb; pdb.set_trace()<esc>
 " Override go-to.definition key shortcut to Ctrl-]
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:pymode_rope_lookup_project = 0
