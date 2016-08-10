@@ -2,7 +2,6 @@
 
 " experimenting with 'Q' quitting window
 map Q :q<CR>
- 
 
 " initial version
 set nocompatible
@@ -15,7 +14,7 @@ call pathogen#helptags()
 " basic shit
 filetype plugin indent on
 syntax on
-syntax enable 
+syntax enable
 
 " get semicolon to behave like colon
 nnoremap ; :
@@ -87,6 +86,10 @@ inoremap <right> <nop>
 nnoremap j gj
 nnoremap k gk
 
+" airline stuff
+let g:airline#extensions#tabline#enabled = 1
+
+
 " leader stuff
 
 " load vimrc by running ",ev"
@@ -101,9 +104,9 @@ set background=dark
 colorscheme solarized
 
 " swap stuff
-set nobackup       
-set nowritebackup  
-set noswapfile     
+set nobackup
+set nowritebackup
+set noswapfile
 
 " my local customizations
 "
@@ -119,6 +122,9 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
 " NerdTree customizations
 " Toggle NerdTree with Ctrl-n
 map <C-n> :NERDTreeToggle<CR>
@@ -132,14 +138,14 @@ set tags=./tags,tags;
 
 """"" Settings for taglist.vim
 let Tlist_Use_Right_Window=1
-let Tlist_Auto_Open=0
-let Tlist_Enable_Fold_Column=0
+let Tlist_Auto_Open=1
+let Tlist_Enable_Fold_Column=1
 let Tlist_Compact_Format=0
 let Tlist_WinWidth=28
 let Tlist_Exit_OnlyWindow=1
 let Tlist_File_Fold_Auto_Close = 1
 nmap <leader>tt :TlistOpen<cr>
-" let g:Tlist_Ctags_Cmd='/usr/local/bin/ctags'  " Proper ctags location
+let g:Tlist_Ctags_Cmd='/usr/local/bin/ctags'  " Proper ctags location
 
 " Toggle Tagbar with F8
 " nmap <F8> :TagbarToggle<CR>
@@ -154,23 +160,29 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-"let g:syntastic_python_flake8_args="--ignore=E501,E128,E225 --max-line-length=110"
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
 let g:syntastic_python_flake8_post_args="--ignore=E501,E128,E225 --max-line-length=110"
 let g:syntastic_error_symbol = "✗"
 let g:syntastic_warning_symbol = "⚠"
 
 " python specific mappings
 "" insert breakpoints using leader b/B
-map <silent> <leader>b oimport pdb; pdb.set_trace()<esc>
-map <silent> <leader>B Oimport pdb; pdb.set_trace()<esc>
+map <silent> <leader>b oimport ipdb; ipdb.set_trace()<esc>
+map <silent> <leader>B Oimport ipdb; ipdb.set_trace()<esc>
 " Override go-to.definition key shortcut to Ctrl-]
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:pymode_rope_lookup_project = 0
 let g:pymode_rope = 0
+
+" vim-slime
+let g:slime_python_ipython = 1
+
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion=1
+nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "http://vimcasts.org/episodes/fugitive-vim-browsing-the-git-object-database/
 "hacks from above (the url, not jesus) to delete fugitive buffers when we
@@ -182,3 +194,21 @@ autocmd BufReadPost fugitive://*
   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
   \   nnoremap <buffer> .. :edit %:h<CR> |
   \ endif
+
+" javascript stuff
+let g:javascript_conceal_function   = "ƒ"
+let g:javascript_conceal_null       = "ø"
+let g:javascript_conceal_this       = "@"
+let g:javascript_conceal_return     = "⇚"
+let g:javascript_conceal_undefined  = "¿"
+let g:javascript_conceal_NaN        = "ℕ"
+let g:javascript_conceal_prototype  = "¶"
+let g:javascript_conceal_static     = "•"
+let g:javascript_conceal_super      = "Ω"
+
+" session stuff
+map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
+map <F3> :source ~/vim_session <cr>     " And load session with F3
+
+" isort
+let g:vim_isort_map = '<C-i>'
