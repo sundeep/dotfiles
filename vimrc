@@ -101,7 +101,6 @@ nnoremap <Leader>o :CtrlP<CR>
 " gui how i like it
 set guifont=Monaco:h14
 set background=dark
-colorscheme solarized
 
 " swap stuff
 set nobackup

@@ -91,10 +91,12 @@ alias gotosundeepisat='ssh -i .ssh/sundeepisat_keypair.pem ubuntu@52.8.31.93'
 alias ping='ping -t 5'
 alias pep8='pep8 --ignore=E402 --max-line-length=110'
 alias ctags=/usr/local/bin/ctags
+alias vim='/usr/local/bin/vim'
 
 export AWS_CREDENTIAL_FILE="/Users/syedida/.aws/credentials.txt"
 
 eval $(thefuck --alias)
+
 
 function play {
     # Skip DASH manifest for speed purposes. This might actually disable

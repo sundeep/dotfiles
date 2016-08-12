@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 ############################
 # .make.sh
 # This script creates symlinks from the home directory to any desired dotfiles in ~/.dotfiles
@@ -7,7 +7,7 @@
 ########## Variables
 
 dir=~/.dotfiles                    # dotfiles directory
-files="zshrc vimrc global_gitignore"    # list of files/folders to symlink in homedir
+files=('zshrc' 'vimrc' 'global_gitignore')    # list of files/folders to symlink in homedir
 
 ##########
 
