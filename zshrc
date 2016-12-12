@@ -54,7 +54,7 @@ source $ZSH/oh-my-zsh.sh
 # using zsh vi-mode, so rebind
 bindkey '^R' history-incremental-search-backward
 
-export PATH="/Users/syedida/.pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+export PATH="/Users/syedida/.pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/sundeepyedida/side_stuff/anaconda2/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -92,10 +92,16 @@ alias ping='ping -t 5'
 alias pep8='pep8 --ignore=E402 --max-line-length=110'
 alias ctags=/usr/local/bin/ctags
 alias vim='/usr/local/bin/vim'
+alias cdfw='cd ~/src/master/trunk/f6'
 
 export AWS_CREDENTIAL_FILE="/Users/syedida/.aws/credentials.txt"
 
 eval $(thefuck --alias)
+
+# Virtualenv stuff
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/src
+source /usr/local/bin/virtualenvwrapper.sh
 
 
 function play {
@@ -121,4 +127,16 @@ function mp3 {
                --extract-audio \
                --audio-format=mp3 \
                --audio-quality=1 "$*"
+}
+
+function set_sr_wheels(){
+    #echo setting shoprunner wheelhouse
+    export PIP_INDEX_URL="http://net.shoprunner.prd.wheelhouse.s3-website-us-east-1.amazonaws.com/wheelhouse/"
+    export PIP_FIND_LINKS=$PIP_INDEX_URL
+}
+
+function set_pypi_wheels() {
+    #echo setting default pypi wheelhouse
+    export PIP_INDEX_URL="https://pypi.python.org/simple"
+    export PIP_FIND_LINKS=$PIP_INDEX_URL
 }
