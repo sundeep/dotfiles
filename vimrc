@@ -85,7 +85,7 @@ Plug 'git@github.com:pangloss/vim-javascript.git'
 Plug 'lukaszkorecki/workflowish'
 
 " VimWiki
-Plug 'vimwiki/vimwiki'
+Plug 'git@github.com:vimwiki/vimwiki.git', { 'branch': 'dev' }
 
 " Tell vim-plug we finished declaring plugins, so it can load them
 call plug#end()
@@ -119,6 +119,7 @@ set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
 
 " sanity stuff
 set number
+set relativenumber
 set encoding=utf-8
 set scrolloff=3
 set autoindent

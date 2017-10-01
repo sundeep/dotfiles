@@ -54,7 +54,11 @@ source $ZSH/oh-my-zsh.sh
 # using zsh vi-mode, so rebind
 bindkey '^R' history-incremental-search-backward
 
+export PYENV_ROOT="$HOME/.pyenv"
 export PATH="/Users/syedida/.pyenv/shims:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/sundeepyedida/side_stuff/anaconda2/bin"
+export PATH=~/.local/bin:$PATH
+
+export CLASSPATH="/Users/sundeepyedida/side_stuff/DrQA/data/corenlp"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -93,6 +97,7 @@ alias pep8='pep8 --ignore=E402 --max-line-length=110'
 alias ctags=/usr/local/bin/ctags
 alias vim='/usr/local/bin/vim'
 alias cdfw='cd ~/src/master/trunk/f6'
+alias scheme='rlwrap -r -c -f /Users/sundeepyedida/src/side_stuff/the_little_schemer/mit_scheme_bindings.txt scheme'
 
 export AWS_CREDENTIAL_FILE="/Users/syedida/.aws/credentials.txt"
 
@@ -140,3 +145,5 @@ function set_pypi_wheels() {
     export PIP_INDEX_URL="https://pypi.python.org/simple"
     export PIP_FIND_LINKS=$PIP_INDEX_URL
 }
+eval "$(pyenv init -)"
+export PATH="/usr/local/opt/scala@2.11/bin:$PATH"
