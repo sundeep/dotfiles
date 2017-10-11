@@ -87,6 +87,10 @@ Plug 'lukaszkorecki/workflowish'
 " VimWiki
 Plug 'git@github.com:vimwiki/vimwiki.git', { 'branch': 'dev' }
 
+" vim-orgmode
+Plug 'jceb/vim-orgmode'
+
+
 " Tell vim-plug we finished declaring plugins, so it can load them
 call plug#end()
 
