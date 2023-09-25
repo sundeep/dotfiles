@@ -1,10 +1,7 @@
+# python 
 *.pyc
 .idea
 venv
-.DS_Store
-.vagrant/
-Vagrantfile
-tags
 .python-version
 
 # coverage stuff
@@ -22,14 +19,3 @@ configci.py
 # utilities to ignore
 sunutils
 
-# django stuff
-migrations
-
-# vim stuff
-.rope*
-
-
-# sr specific stuff
-shoprunner_resources.py
-sr_vm_resources.py
-srservices_member_config.py
