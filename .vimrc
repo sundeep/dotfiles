@@ -59,7 +59,7 @@ Plug 'fholgado/minibufexpl.vim'
 " Ack
 Plug 'mileszs/ack.vim'
 
-Plug 'micha/vim-colors-solarized'
+Plug 'lifepillar/vim-solarized8'
 
 " YouCompleteMe
 "Plug 'Valloric/YouCompleteMe'
@@ -190,7 +190,8 @@ nnoremap <Leader>o :CtrlP<CR>
 " gui how i like it
 set guifont=Monaco:h14
 set background=dark
-colorscheme solarized
+set termguicolors
+colorscheme solarized8
 
 " swap stuff
 set nobackup
