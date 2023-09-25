@@ -19,3 +19,6 @@ configci.py
 # utilities to ignore
 sunutils
 
+# other files
+*.sublime-workspace
+
