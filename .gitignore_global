@@ -3,6 +3,7 @@
 .idea
 venv
 .python-version
+pytest.xml
 
 # coverage stuff
 .coverage
