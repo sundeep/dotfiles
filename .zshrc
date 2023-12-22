@@ -77,7 +77,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions python virtualenv)
 source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 source $ZSH/oh-my-zsh.sh
@@ -113,3 +113,40 @@ source $ZSH/oh-my-zsh.sh
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# >>> conduis initialize <<<
+#
+# !! Contents within this block are managed by 'conduis init' !!
+#
+# Note: We don't want conduis' python earlier on the path
+#       and so conduis is at the end.
+export PATH="$PATH:/opt/conduis/bin"
+# <<< conduis initialize <<<
+export STITCHFIX_USER_EMAIL=sundeep.yedida@stitchfix.com
+# Color ls output
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+# Show branch names in terminal
+force_color_prompt=yes
+color_prompt=yes
+# Add git branch if its present to PS1
+parse_git_branch() { git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'; }
+if [ '$color_prompt' = yes ]; then
+  PS1='\[\033[0;38m\]\u@\[\033[0;32m\]\h\[\033[0;38m\]:\w\[\033[0;31m\][$(parse_git_branch 2>/dev/null)$(parse_svn_branch 2>/dev/null)]\[\033[0;38m\]$ '
+else PS1='%t %D %n %1d$ '; fi
+unset color_prompt force_color_prompt
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH=~/bin:$PATH >> /Users/sundeep.yedida/.zshrc
+if command -v pyenv 1>/dev/null 2>&1; then eval "$(pyenv init --path)"; eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+export PATH="/opt/homebrew/opt/postgresql@11/bin:$PATH"
+export PATH="/Users/sundeep.yedida/bin:$PATH"
+
+# Created by `userpath` on 2023-10-18 19:44:23
+export PATH="$PATH:/Users/sundeep.yedida/.local/bin"
+
+FORMAT="\nID\t{{.ID}}\nIMAGE\t{{.Image}}\nCOMMAND\t{{.Command}}\nCREATED\t{{.RunningFor}}\nSTATUS\t{{.Status}}\nPORTS\t{{.Ports}}\nNAMES\t{{.Names}}\n"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
